@@ -1,0 +1,40 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:tns="http://mySchema/1.0"
+           attributeFormDefault="unqualified"
+           elementFormDefault="unqualified"
+           targetNamespace="http://mySchema/1.0"
+           version="1.0">
+   <xs:element name="MyRequest" type="tns:MyRequest"/>
+   <xs:element name="MyResponse" type="tns:MyResponse"/>
+
+
+   <xs:element name="MyRequest2" type="tns:MyRequest2"/>
+   <xs:element name="MyResponse2" type="tns:MyResponse2"/>
+
+   <xs:complexType name="MyRequest">
+      <xs:sequence>
+         <xs:element name="IdentityRequest" type="xs:string"/>
+         <xs:element minOccurs="0" name="SearchType" type="xs:string"/>
+         <xs:element minOccurs="0" name="Paging" type="xs:string"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="MyResponse">
+      <xs:sequence>
+         <xs:element maxOccurs="unbounded" minOccurs="0" name="IdentityData" type="xs:string"/>
+         <xs:element minOccurs="0" name="Paging" type="xs:string"/>
+      </xs:sequence>
+   </xs:complexType>
+
+   <xs:complexType name="MyRequest2">
+      <xs:sequence>
+         <xs:element name="field1req" type="xs:string"/>
+         <xs:element name="field2shared" type="xs:string"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="MyResponse2">
+      <xs:sequence>
+        <xs:element name="field2shared" type="xs:string"/>
+        <xs:element name="field3out" type="xs:string"/>
+      </xs:sequence>
+   </xs:complexType>
+</xs:schema>

@@ -1,0 +1,70 @@
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/"
+        xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+        xmlns:wsp="http://www.w3.org/ns/ws-policy"
+        xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy"
+        xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata"
+        xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+        xmlns:sch="http://mySchema/1.0"
+        xmlns:tns="http://myWsdl/1.0"
+        xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+        targetNamespace="http://myWsdl/1.0"
+        name="MyService">
+
+    <types>
+        <xsd:schema>
+            <xsd:import namespace="http://mySchema/1.0" schemaLocation="../xsd/MySchema.xsd"/>
+        </xsd:schema>
+    </types>
+
+    <message name="MyRequest">
+        <part name="parameters" element="sch:MyRequest"/>
+    </message>
+    <message name="MyResponse">
+        <part name="parameters" element="sch:MyResponse"/>
+    </message>
+
+    <message name="MyRequest2222">
+        <part name="parameters" element="sch:MyRequest2"/>
+    </message>
+    <message name="MyResponse2222">
+        <part name="parameters" element="sch:MyResponse2"/>
+    </message>
+
+    <portType name="IMyService">
+        <operation name="MyRequest1">
+            <input message="tns:MyRequest"/>
+            <output message="tns:MyResponse"/>
+        </operation>
+        <operation name="MyRequest2">
+            <input message="tns:MyRequest2222"/>
+            <output message="tns:MyResponse2222"/>
+        </operation>
+    </portType>
+
+    <binding name="MyBinding" type="tns:IMyService">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <operation name="MyRequest1">
+            <soap:operation soapAction=""/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="MyRequest2">
+            <soap:operation soapAction=""/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="MyService">
+        <port name="MyBindingService" binding="tns:MyBinding">
+            <soap:address location="http://asdf-qwerty:8290/services/MyService"/>
+        </port>
+    </service>
+</definitions>
